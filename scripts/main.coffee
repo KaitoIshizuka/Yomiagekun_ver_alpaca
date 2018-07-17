@@ -1,3 +1,3 @@
 module.exports = (robot) ->
-  robot.respond(/こんにちは/i,(res) ->
+  robot.respond(/Hello/i,(res) ->
     res.send "なんだって？"
