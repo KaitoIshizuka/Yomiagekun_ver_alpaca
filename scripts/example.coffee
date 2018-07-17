@@ -8,9 +8,14 @@
 #
 #   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
 
+# create client
+var docomottsapi = require("docomo-tts-api");
+
+
 module.exports = (robot) ->
   robot.hear /.*/i, (res) ->
     res.send res.message.text
+    docomottsapi.speak(res.message.text, callback);
 
   # robot.hear /badger/i, (res) ->
   #   res.send "Badgers? BADGERS? WE DON'T NEED NO STINKIN BADGERS"
