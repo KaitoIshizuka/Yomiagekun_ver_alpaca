@@ -13,7 +13,7 @@ module.exports = (robot) ->
     res.send "なんだって？"
 
   robot.respond /.*/i, (msg) ->
-    msg.send msg.message.text
+    msg.send msg.match[1]
 
   # robot.hear /badger/i, (res) ->
   #   res.send "Badgers? BADGERS? WE DON'T NEED NO STINKIN BADGERS"
