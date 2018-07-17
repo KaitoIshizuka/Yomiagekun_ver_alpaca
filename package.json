@@ -5,7 +5,8 @@
   "author": "KaitoIshizuka <e155716@ie.u-ryukyu.ac.jp>",
   "description": "yomiage for discord",
   "dependencies": {
-    "hubot": "^2.19.0",
+    "discord.js": "^11.3.2",
+    "hubot": "^3.0.1",
     "hubot-diagnostics": "0.0.2",
     "hubot-discord": "^2.1.0",
     "hubot-google-images": "^0.2.7",
