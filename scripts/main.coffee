@@ -14,4 +14,7 @@ module.exports = (robot) ->
     res.send res.message.text
 
   robot.respond /こっち.*おいで/i, (message) ->
-    message.member.voidChannel.join()
+    if message.member.voidChannel
+      message.member.voidChannel.join()
+    else
+      message.reply 'voidChannel がないよ'
