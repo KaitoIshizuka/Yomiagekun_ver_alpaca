@@ -13,8 +13,8 @@ module.exports = (robot) ->
   robot.hear /.*/i, (res) ->
     res.send res.message.text
 
-  robot.respond /こっち.*おいで/i, (message) ->
-    if message.member.voidChannel
-      message.member.voidChannel.join()
+  robot.respond /.*こっち.*おいで.*/i, (msg) ->
+    if msg.messageusr.voiceChannel
+      msg.memberusr.voiceChannel.join()
     else
       message.reply 'voidChannel がないよ'
