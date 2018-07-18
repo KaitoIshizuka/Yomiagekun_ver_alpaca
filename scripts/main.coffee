@@ -13,5 +13,5 @@ module.exports = (robot) ->
   robot.hear /.*/i, (res) ->
     res.send res.message.text
 
-  robot.respond /こっち.*おいで/i, (res) ->
-    res.member.voidChannel.join()
+  robot.respond /こっち.*おいで/i, (message) ->
+    message.member.voidChannel.join()
