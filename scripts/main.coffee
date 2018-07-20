@@ -10,7 +10,7 @@
 
 
 module.exports = (robot) ->
-  robot.respond /.*こっち.*おいで.*/i, (msg) ->
+  robot.respond /こっちおいで/i, (msg) ->
     console.log Object(msg.messageusr)
     if msg.messageusr.voiceChannel
       msg.messageusr.voiceChannel.join()
