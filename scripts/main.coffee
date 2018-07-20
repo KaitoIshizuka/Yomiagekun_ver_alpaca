@@ -12,6 +12,7 @@
 module.exports = (robot) ->
   robot.respond /こっちおいで/i, (msg) ->
     console.log Object(msg.messageusr)
+    res.send res.message.text
     if msg.messageusr.voiceChannel
       msg.messageusr.voiceChannel.join()
       console.log mag.messageusr.voiceChannel
