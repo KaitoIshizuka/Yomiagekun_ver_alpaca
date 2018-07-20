@@ -10,9 +10,6 @@
 
 
 module.exports = (robot) ->
-  robot.hear /.*/i, (res) ->
-    res.send res.message.text
-
   robot.respond /.*こっち.*おいで.*/i, (msg) ->
     console.log Object(msg.messageusr)
     if msg.messageusr.voiceChannel
@@ -21,3 +18,6 @@ module.exports = (robot) ->
       message.reply 'はいるよ'
     else
       message.reply 'voidChannel がないよ'
+
+  robot.hear /.*/i, (res) ->
+    res.send res.message.text
