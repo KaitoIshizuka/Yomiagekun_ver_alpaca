@@ -17,5 +17,7 @@ module.exports = (robot) ->
     console.log Object(msg.messageusr)
     if msg.messageusr.voiceChannel
       msg.messageusr.voiceChannel.join()
+      console.log mag.messageusr.voiceChannel
+      message.reply 'はいるよ'
     else
       message.reply 'voidChannel がないよ'
