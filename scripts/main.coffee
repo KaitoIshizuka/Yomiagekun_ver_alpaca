@@ -11,11 +11,10 @@
 
 module.exports = (robot) ->
   robot.respond /こっちおいで/i, (msg) ->
-    console.log Object(msg.messageusr)
-    res.send res.message.text
+    # console.log Object(msg.messageusr)
     if msg.messageusr.voiceChannel
-      msg.messageusr.voiceChannel.join()
-      console.log mag.messageusr.voiceChannel
+      # msg.messageusr.voiceChannel.join()
+      # console.log mag.messageusr.voiceChannel
       message.reply 'はいるよ'
     else
       message.reply 'voidChannel がないよ'
