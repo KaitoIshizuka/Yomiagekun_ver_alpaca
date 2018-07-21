@@ -12,12 +12,12 @@
 module.exports = (robot) ->
   robot.respond /こっちおいで/i, (msg) ->
     # console.log Object(msg.messageusr)
-    if msg.messageusr.voiceChannel
+    if msg.message.user.voiceChannel.join()
       # msg.messageusr.voiceChannel.join()
       # console.log mag.messageusr.voiceChannel
       message.reply 'はいるよ'
     else
-      message.reply 'voidChannel がないよ'
+      message.reply 'voiceChannel がないよ'
 
   robot.hear /.*/i, (res) ->
     res.send res.message.text
