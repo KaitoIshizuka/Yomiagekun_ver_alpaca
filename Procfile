@@ -1,1 +1,1 @@
-aweb: coffee scripts/main.coffee
+web: coffee scripts/main.coffee
