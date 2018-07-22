@@ -12,6 +12,7 @@
 module.exports = (robot) ->
 
   robot.respond /##yo/i, (msg) ->
+    msg.send '受け取ったよ'
     if msg.message.user.name
       msg.send 'はいるよ'
       msg.send '#{msg.message.user.name}'
