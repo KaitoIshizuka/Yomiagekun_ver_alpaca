@@ -10,7 +10,7 @@
 
 
 module.exports = (robot) ->
-  robot.respond /yo/i, (msg) ->
+  robot.respond /##yo/i, (msg) ->
     # console.log Object(msg)
     if msg.message.user.voiceChannel.join()
       # msg.messageusr.voiceChannel.join()
@@ -19,6 +19,6 @@ module.exports = (robot) ->
     else
       msg.reply 'voiceChannel がないよ'
 
-  robot.hear /.*/i, (res) ->
+  robot.hear /^(?!##).*$/i, (res) ->
     res.send Object(res.message.text)
     # res.send res.message.text
