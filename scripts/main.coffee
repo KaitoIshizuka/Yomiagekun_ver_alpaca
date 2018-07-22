@@ -13,9 +13,10 @@ module.exports = (robot) ->
 
   robot.respond /##yo/i, (msg) ->
     msg.send '受け取ったよ'
-    if msg.message.user.name
+    if msg.message.user.voiceChannel
       msg.send 'はいるよ'
-      msg.send '#{msg.message.user.name}'
+      msg.message.user.voiceChannel.join()
+      msg.send 'はいったよ'
     else
       res.send 'voiceChannel がないよ'
 
