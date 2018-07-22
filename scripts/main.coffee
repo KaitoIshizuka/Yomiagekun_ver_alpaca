@@ -8,7 +8,9 @@
 #
 #   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
 
-Eris = require("eris")
+```
+const Eris = require("eris");
+```
 
 BOT_TOKEN = "NDY4NjQzMDU2OTg4NDU0OTQy.DjX3HQ.-VlfSFDMLtIwK49ryJAdrfQb6M8"
 
