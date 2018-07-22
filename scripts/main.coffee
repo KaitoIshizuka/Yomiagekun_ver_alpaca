@@ -10,6 +10,7 @@
 
 
 module.exports = (robot) ->
+
   robot.respond /##yo/i, (msg) ->
     if msg.message.user.name
       msg.reply 'はいるよ'
