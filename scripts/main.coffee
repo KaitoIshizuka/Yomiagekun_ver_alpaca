@@ -24,6 +24,7 @@ module.exports = (robot) ->
   ## ## か @ で始まらない場合のみオウム返し
   robot.hear /^(?!##|@)/i, (res) ->
     res.send res.message.text
+    res.send robot.message.text
 
   ## ## で始まる文について発言
   robot.hear /^##.*$/i, (res) ->
