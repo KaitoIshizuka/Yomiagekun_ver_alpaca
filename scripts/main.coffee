@@ -20,6 +20,9 @@ module.exports = (robot) ->
     else
       msg.send 'voiceChannel がないよ'
 
-  robot.hear /(?!##).*$/i, (res) ->
-    res.send Object(res.message.text)
+  robot.hear /^(?!##).*$/i, (res) ->
+    res.send res.message.text
     # res.send res.message.text
+
+  robot.hear /^##.*$/i, (res) ->
+    res.send 'メンションつけて、、'
