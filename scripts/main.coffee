@@ -11,10 +11,7 @@
 
 module.exports = (robot) ->
   robot.respond /##yo/i, (msg) ->
-    # console.log Object(msg)
     if msg.message.user.voiceChannel
-      # msg.messageusr.voiceChannel.join()
-      # console.log mag.messageusr.voiceChannel
       msg.reply 'はいるよ'
     else
       msg.reply 'voiceChannel がないよ'
