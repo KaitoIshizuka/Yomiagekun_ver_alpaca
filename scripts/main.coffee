@@ -11,12 +11,12 @@
 
 module.exports = (robot) ->
 
-  robot.respond /##yo/i, (msg) ->
-    if msg.message.user.name
-      msg.reply 'はいるよ'
-      msg.reply '#{msg.message.user.name}'
+  robot.respond /##yo/i, (res) ->
+    if res.message.user.name
+      res.reply 'はいるよ'
+      res.reply '#{msg.message.user.name}'
     else
-      msg.reply 'voiceChannel がないよ'
+      res.reply 'voiceChannel がないよ'
 
   robot.hear /^(?!##).*$/i, (res) ->
     res.send Object(res.message.text)
