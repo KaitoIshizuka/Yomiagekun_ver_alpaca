@@ -11,18 +11,20 @@
 
 module.exports = (robot) ->
 
-  robot.respond /##yo/i, (msg) ->
+  ## ##comeonで始まると通話に入る
+  robot.respond /##comeon/i, (msg) ->
     msg.send '受け取ったよ'
-    if msg.message.user.voiceChannel
+    if robot.message.user.voiceChannel
       msg.send 'はいるよ'
-      msg.message.user.voiceChannel.join()
+      robot.message.user.voiceChannel.join()
       msg.send 'はいったよ'
     else
       msg.send 'voiceChannel がないよ'
 
+  ## ## か @ で始まらない場合のみオウム返し
   robot.hear /^(?!##|@)/i, (res) ->
     res.send res.message.text
-    # res.send res.message.text
 
+  ## ## で始まる文について発言
   robot.hear /^##.*$/i, (res) ->
     res.send 'メンションつけて、、'
