@@ -11,7 +11,8 @@
 Discord = require('discord.js')
 bot = new Discord.Client()
 BOT_TOKEN = "NDY4NjQzMDU2OTg4NDU0OTQy.DjX3HQ.-VlfSFDMLtIwK49ryJAdrfQb6M8"
-bot.login(BOT_TOKEN)
+
+bot.login BOT_TOKEN
 
 bot.on "ready", () ->
   console.log("ready")
