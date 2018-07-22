@@ -11,8 +11,9 @@
 
 module.exports = (robot) ->
   robot.respond /##yo/i, (msg) ->
-    if msg.message.user.voiceChannel
+    if msg.message.user.name
       msg.reply 'はいるよ'
+      msg.reply '#{msg.message.user.name}'
     else
       msg.reply 'voiceChannel がないよ'
 
