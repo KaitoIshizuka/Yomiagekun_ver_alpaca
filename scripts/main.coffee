@@ -8,11 +8,10 @@
 #
 #   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
 
-`const Eris = require("eris");`
-
+Discord = require('discord.js')
+bot = new Discord.Client()
 BOT_TOKEN = "NDY4NjQzMDU2OTg4NDU0OTQy.DjX3HQ.-VlfSFDMLtIwK49ryJAdrfQb6M8"
-
-bot = new Eris("BOT_TOKEN")
+bot.login(BOT_TOKEN)
 
 bot.on "ready", () ->
   console.log("ready")
@@ -23,7 +22,6 @@ bot.on "messageCreate", (msg) ->
   else if msg.content == "!pong"
     bot.createMessage msg.channel.id, "pinG"
 
-bot.connect()
 
 # module.exports = (robot) ->
 #
