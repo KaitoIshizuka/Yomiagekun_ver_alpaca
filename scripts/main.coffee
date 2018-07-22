@@ -14,9 +14,9 @@ module.exports = (robot) ->
   ## ##comeonで始まると通話に入る
   robot.respond /##comeon/i, (msg) ->
     msg.send '受け取ったよ'
-    if robot.message.user.voiceChannel
+    if robot.message.member.voiceChannel
       msg.send 'はいるよ'
-      robot.message.user.voiceChannel.join()
+      robot.message.member.voiceChannel.join()
       msg.send 'はいったよ'
     else
       msg.send 'voiceChannel がないよ'
