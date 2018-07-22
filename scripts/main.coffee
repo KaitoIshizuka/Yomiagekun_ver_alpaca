@@ -18,7 +18,7 @@ module.exports = (robot) ->
       msg.message.user.voiceChannel.join()
       msg.send 'はいったよ'
     else
-      res.send 'voiceChannel がないよ'
+      msg.send 'voiceChannel がないよ'
 
   robot.hear /(?!##).*$/i, (res) ->
     res.send Object(res.message.text)
