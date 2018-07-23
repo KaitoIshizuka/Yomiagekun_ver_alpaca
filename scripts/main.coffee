@@ -21,6 +21,15 @@ bot.on 'message', (message) ->
   if message.author.id != bot.user.id
     message.channel.send message.content
 
+  if message.content == '##joinus'
+    if message.member.voiceChannel
+      message.member.voiceChannel.join()
+      .then connection ->
+        message.repry '入ったよ'
+      .catch console.log
+    else
+      message.repry 'voiceChannel に参加しなよ'
+
 
 # module.exports = (robot) ->
 #
