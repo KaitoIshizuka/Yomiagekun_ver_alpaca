@@ -75,7 +75,7 @@ bot.on 'message', (message) ->
         }
         connection.playStream(stream)
 
-con.on 'speaking' (user) ->
+con.on 'speaking', (user) ->
   if user.id == bot.user.id
     speakingFlag = true
   else
