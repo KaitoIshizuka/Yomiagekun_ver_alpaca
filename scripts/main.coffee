@@ -25,7 +25,7 @@ bot.on 'message', (message) ->
     if message.content == '##joinus'
       if message.member.voiceChannel
         message.member.voiceChannel.join()
-        .then connection ->
+        .then () ->
           message.reply '入ったよ'
         .catch console.log
       else
