@@ -73,7 +73,7 @@ bot.on 'message', (message) ->
           voice: voice,
           msg: message.content
         }
-        con.playStream(stream)
+        message.member.voiceChannel.connection.playStream(stream)
 
 if con != null
   con.on 'speaking', (user, speaking) ->
