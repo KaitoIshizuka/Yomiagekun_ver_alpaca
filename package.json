@@ -21,7 +21,8 @@
     "hubot-shipit": "^0.2.1",
     "libsodium-wrappers": "^0.7.3",
     "request": "^2.87.0",
-    "uws": "^10.148.1"
+    "uws": "^10.148.1",
+    "voice-text": "^0.1.2"
   },
   "engines": {
     "node": "10.6.0"

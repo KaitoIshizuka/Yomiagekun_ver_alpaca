@@ -43,7 +43,7 @@ bot.on 'message', (message) ->
           message.reply 'voiceChannelに入ったよ'
         .catch console.log
       else
-        message.reply 'voiceChannel に参加しなよ'
+        message.reply 'voiceChannel に参加しなよ、、'
 
     if message.member.voiceChannel
       if connection.playing
