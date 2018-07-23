@@ -18,10 +18,7 @@ bot.on "ready", () ->
   console.log("ready")
 
 bot.on 'message', (message) ->
-  if message.content == "!ping"
-    message.channel.send "POn"
-  else if message.content == "!pong"
-    message.channel.send "PINg"
+  message.chennel.send message.content
 
 
 # module.exports = (robot) ->
