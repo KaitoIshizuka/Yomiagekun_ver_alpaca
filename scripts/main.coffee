@@ -19,9 +19,9 @@ bot.on "ready", () ->
 
 bot.on 'message', (message) ->
   if message.content == "!ping"
-    bot.createMessage message.channel.id, "POn"
+    message.channel.send "POn"
   else if message.content == "!pong"
-    bot.createMessage message.channel.id, "pinG"
+    message.channel.send "PINg"
 
 
 # module.exports = (robot) ->
