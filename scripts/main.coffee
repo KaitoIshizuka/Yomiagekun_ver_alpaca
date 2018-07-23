@@ -25,10 +25,10 @@ bot.on 'message', (message) ->
     if message.member.voiceChannel
       message.member.voiceChannel.join()
       .then connection ->
-        message.repry '入ったよ'
+        message.reply '入ったよ'
       .catch console.log
     else
-      message.repry 'voiceChannel に参加しなよ'
+      message.reply 'voiceChannel に参加しなよ'
 
 
 # module.exports = (robot) ->
