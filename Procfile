@@ -1,1 +1,1 @@
-web: coffee scripts/main.coffee
+worker: coffee scripts/main.coffee
