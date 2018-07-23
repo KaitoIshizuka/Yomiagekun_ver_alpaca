@@ -23,9 +23,13 @@ voiceText = new VoiceText(VOICE_TEXT_TOKEN)
 textBuffer = []
 userVoice = {}
 VoiceTable = ['hikari', 'haruka', 'takeru', 'santa', 'bear', 'show']
+con = null
+speakingFlag = false
 
 bot.on "ready", () ->
   console.log("ready")
+
+
 
 bot.on 'message', (message) ->
   if message.author.id != bot.user.id
@@ -39,14 +43,25 @@ bot.on 'message', (message) ->
     if message.content == '##joinus'
       if message.member.voiceChannel
         message.member.voiceChannel.join()
-        .then () ->
+        .then (connection) ->
           message.reply 'voiceChannelに入ったよ'
+          con = connection
         .catch console.log
       else
         message.reply 'voiceChannel に参加しなよ'
 
+    if message.content == '##bye'
+      if con
+        con.disconnect()
+        .then () ->
+          message.send 'バイバイ！また呼んでね！'
+          con = null
+        .catch console.log
+      else
+        message.reply '通話に参加してないです、、'
+
     if message.member.voiceChannel
-      if connection.playing
+      if speakingFlag
         voice = getVoiceByUser message.author.id
         textBuffer.push {
           voice: voice,
@@ -58,7 +73,13 @@ bot.on 'message', (message) ->
           voice: voice,
           msg: message.content
         }
-        connection.play(stream)
+        connection.playStream(stream)
+
+con.on 'speaking' (user) ->
+  if user.id == bot.user.id
+    speakingFlag = true
+  else
+    speakingFlag = false
 
 getVoiceByUser = (id) ->
   if id in userVoice
