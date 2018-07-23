@@ -18,7 +18,7 @@ bot.on "ready", () ->
   console.log("ready")
 
 bot.on 'message', (message) ->
-  message.chennel.send message.content
+  message.channel.send message.content
 
 
 # module.exports = (robot) ->
