@@ -18,7 +18,7 @@ VoiceText = require 'voice-text'
 writeFileSync = require 'fs'
 
 VOICE_TEXT_TOKEN = process.env.VOICE_TEXT_TOKEN
-voiceText = new VoiceText VOICE_TEXT_TOKEN
+voiceText = new VoiceText(VOICE_TEXT_TOKEN)
 
 textBuffer = []
 userVoice = {}
@@ -43,7 +43,7 @@ bot.on 'message', (message) ->
           message.reply 'voiceChannelに入ったよ'
         .catch console.log
       else
-        message.reply 'voiceChannel に参加しなよ、、'
+        message.reply 'voiceChannel に参加しなよ'
 
     if message.member.voiceChannel
       if connection.playing
