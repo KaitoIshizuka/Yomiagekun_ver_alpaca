@@ -49,7 +49,7 @@ bot.on 'message', (message) ->
     if message.content == '##bye'
       if con
         con.disconnect()
-        message.send 'バイバイ！また呼んでね！'
+        message.channel.send 'バイバイ！また呼んでね！'
         con = null
       else
         message.reply '通話に参加してないです、、'
