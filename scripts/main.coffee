@@ -36,10 +36,6 @@ bot.on 'message', (message) ->
     if /^(?!##).*$/i.exec "#{message.content}"
       message.channel.send message.content
 
-    if /^(?!##).*$/i.exec "#{message.content}"
-      message.channel.send message.content
-
-
     if message.content == '##joinus'
       if message.member.voiceChannel
         message.member.voiceChannel.join()
@@ -60,7 +56,7 @@ bot.on 'message', (message) ->
       else
         message.reply '通話に参加してないです、、'
 
-    if message.member.voiceChannel
+    if con
       if speakingFlag
         voice = getVoiceByUser message.author.id
         textBuffer.push {
