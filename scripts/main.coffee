@@ -27,8 +27,8 @@ bot.on 'message', (message) ->
         .then connection ->
           message.reply '入ったよ'
           .catch console.log
-        else
-          message.reply 'voiceChannel に参加しなよ'
+      else
+        message.reply 'voiceChannel に参加しなよ'
 
 
 # module.exports = (robot) ->
