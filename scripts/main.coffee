@@ -24,18 +24,6 @@ textBuffer = []
 userVoice = {}
 VoiceTable = ['hikari', 'haruka', 'takeru', 'santa', 'bear', 'show']
 
-getVoiceByUser (id) ->
-  if id in userVoice
-    return userVoice[id]
-  voice = VoiceTable[Math.floor Math.random() * VoiceTable.length]
-  userVoice[id] = voice
-  return voice
-
-getYomiageStream (obj) ->
-    return voiceText.stream obj.msg, {
-        speaker: obj.voice
-    }
-
 bot.on "ready", () ->
   console.log("ready")
 
@@ -71,6 +59,18 @@ bot.on 'message', (message) ->
           msg: message.content
         }
         connection.play(stream)
+
+getVoiceByUser = (id) ->
+  if id in userVoice
+    return userVoice[id]
+  voice = VoiceTable[Math.floor Math.random() * VoiceTable.length]
+  userVoice[id] = voice
+  return voice
+
+getYomiageStream = (obj) ->
+    return voiceText.stream obj.msg, {
+        speaker: obj.voice
+    }
 
 # module.exports = (robot) ->
 #
