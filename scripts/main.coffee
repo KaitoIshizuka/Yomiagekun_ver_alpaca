@@ -18,8 +18,9 @@ bot.on "ready", () ->
   console.log("ready")
 
 bot.on 'message', (message) ->
-  if message.author.id != bot.user.id && /^(?!##).*$/i.exec "#{message.content}"
-    message.channel.send message.content
+  if message.author.id != bot.user.id
+    if /^(?!##).*$/i.exec "#{message.content}"
+      message.channel.send message.content
 
     if message.content == '##joinus'
       if message.member.voiceChannel
