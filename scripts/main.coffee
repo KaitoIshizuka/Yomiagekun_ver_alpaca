@@ -26,7 +26,7 @@ bot.on 'message', (message) ->
         message.member.voiceChannel.join()
         .then connection ->
           message.reply '入ったよ'
-          .catch console.log
+        .catch console.log
       else
         message.reply 'voiceChannel に参加しなよ'
 
