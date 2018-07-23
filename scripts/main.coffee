@@ -73,8 +73,8 @@ bot.on 'message', (message) ->
           voice: voice,
           msg: message.content
         }
-        connection.playStream(stream)
-        
+        con.playStream(stream)
+
 if con != null
   con.on 'speaking', (user, speaking) ->
     if user.id == bot.user.id && speaking
