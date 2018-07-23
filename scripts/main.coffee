@@ -17,7 +17,7 @@ bot.login BOT_TOKEN
 bot.on "ready", () ->
   console.log("ready")
 
-bot.on 'message', message ->
+bot.on 'message', (message) ->
   if message.content == "!ping"
     bot.createMessage msg.channel.id, "POn"
   else if message.content == "!pong"
