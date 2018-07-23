@@ -41,7 +41,7 @@ bot.on 'message', (message) ->
         message.member.voiceChannel.join()
         .then (connection) ->
           message.reply 'voiceChannelに入ったよ'
-          con = connection
+          con = message.member.voiceChannel.connection
         .catch console.log
       else
         message.reply 'voiceChannel に参加しなよ'
