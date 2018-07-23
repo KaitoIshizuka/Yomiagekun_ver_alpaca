@@ -10,9 +10,17 @@
 
 Discord = require('discord.js')
 bot = new Discord.Client()
-BOT_TOKEN = 'NDY4NjQzMDU2OTg4NDU0OTQy.DjX3HQ.-VlfSFDMLtIwK49ryJAdrfQb6M8'
 
 bot.login BOT_TOKEN
+
+VoiceText = require 'voice-text'
+writeFileSync = require 'fs'
+
+voiceText = new VoiceText VOICE_TEXT_TOKEN
+
+textBuffer = []
+userVoice = {}
+VoiceTable = ['hikari', 'haruka', 'takeru', 'santa', 'bear', 'show']
 
 bot.on "ready", () ->
   console.log("ready")
@@ -21,6 +29,10 @@ bot.on 'message', (message) ->
   if message.author.id != bot.user.id
     if /^(?!##).*$/i.exec "#{message.content}"
       message.channel.send message.content
+
+    if /^(?!##).*$/i.exec "#{message.content}"
+      message.channel.send message.content
+
 
     if message.content == '##joinus'
       if message.member.voiceChannel
@@ -31,7 +43,32 @@ bot.on 'message', (message) ->
       else
         message.reply 'voiceChannel に参加しなよ'
 
+    if message.member.voiceChannel
+      if connection.playing
+        voice = getVoiceByUser message.author.id
+        textBuffer.push {
+          voice: voice,
+          msg: message.content
+        }
+      else
+        voice = getVoiceByUser message.author.id
+        stream = getYomiageStream {
+          voice: voice,
+          msg: message.content
+        }
+        connection.play(stream)
 
+getVoiceByUser (id) ->
+  if id in userVoice
+    return userVoice[id]
+  voice = VoiceTable[Math.floor Math.random() * VoiceTable.length]
+  userVoice[id] = voice
+  return voice
+
+getYomiageStream (obj) ->
+    return voiceText.stream obj.msg, {
+        speaker: obj.voice
+    }
 # module.exports = (robot) ->
 #
 #   ## ##comeonで始まると通話に入る
