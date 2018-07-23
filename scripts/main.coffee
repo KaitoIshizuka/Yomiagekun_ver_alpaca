@@ -49,10 +49,8 @@ bot.on 'message', (message) ->
     if message.content == '##bye'
       if con
         con.disconnect()
-        .then () ->
-          message.send 'バイバイ！また呼んでね！'
-          con = null
-        .catch console.log
+        message.send 'バイバイ！また呼んでね！'
+        con = null
       else
         message.reply '通話に参加してないです、、'
 
