@@ -14,7 +14,7 @@ bot = new Discord.Client()
 BOT_TOKEN = process.env.BOT_TOKEN
 bot.login BOT_TOKEN
 
-VoiceText = require 'voice-text'
+VoiceText = require('voice-text')
 writeFileSync = require 'fs'
 
 VOICE_TEXT_TOKEN = process.env.VOICE_TEXT_TOKEN
