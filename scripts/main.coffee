@@ -18,7 +18,8 @@ bot.on "ready", () ->
   console.log("ready")
 
 bot.on 'message', (message) ->
-  message.channel.send message.content
+  if message.author.id != bot.user.id
+    message.channel.send message.content
 
 
 # module.exports = (robot) ->
