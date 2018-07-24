@@ -44,7 +44,7 @@ bot.on 'message', (message) ->
           con = message.member.voiceChannel.connection
         .catch console.log
       else
-        message.reply 'voiceChannel に参加しなよ'
+        message.reply '先にvoiceChannel に参加してー'
 
     if message.content == '##bye'
       if con
