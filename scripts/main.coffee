@@ -49,8 +49,10 @@ bot.on 'message', (message) ->
                 if textBuffer.length
                   con.playStream(getYomiageStream(textBuffer.shift()))
                   speakingFlag = true
+                  console.log "speaking"
               else
                 speakingFlag = false
+                console.log "黙ってる"
           .catch console.log
         else
           message.reply '先にvoiceChannel に参加してー'
@@ -86,7 +88,7 @@ bot.on 'message', (message) ->
       # dispatcher.on 'end', () ->
       #   speakingFlag = false
       #   console.log "speak finish"
-      # 
+      #
 # if con
 #   speakingFlag = false
 #   console.log "speaking"
