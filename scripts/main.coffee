@@ -52,7 +52,7 @@ bot.on 'message', (message) ->
                   console.log "speaking"
               else
                 speakingFlag = false
-                console.log "黙ってる"
+                console.log "n #{textBuffer.length}"
           .catch console.log
         else
           message.reply '先にvoiceChannel に参加してー'
