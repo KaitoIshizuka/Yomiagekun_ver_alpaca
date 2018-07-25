@@ -82,7 +82,11 @@ if con
    console.log "speak finish"
    if textBuffer.length
      voice = VoiceTable['takeru']
-     con.playStream(getYomiageStream{voice: voice, msg: textBuffer.shift()})
+     stream = getYomiageStream {
+       voice: voice,
+       msg: textBuffer.shift()
+     }
+     con.playStream(getYomiageStream(stream))
 
 # if con
 #   speakingFlag = false
