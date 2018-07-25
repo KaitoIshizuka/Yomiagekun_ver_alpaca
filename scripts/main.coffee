@@ -25,6 +25,7 @@ userVoice = {}
 VoiceTable = ['hikari', 'haruka', 'takeru', 'santa', 'bear', 'show']
 con = null
 speakingFlag = false
+dispatcher = null
 
 bot.on "ready", () ->
   console.log("ready")
@@ -70,15 +71,22 @@ bot.on 'message', (message) ->
           voice: voice,
           msg: message.content
         }
-        message.member.voiceChannel.connection.playStream(stream)
+        dispatcher = message.member.voiceChannel.connection.playStream(stream)
 
-if con
-  speakingFlag = false
-  con.on 'speaking', (user, speaking) ->
-    if user.id == bot.user.id
-      speakingFlag = true
-      console.log "speaking"
+if dispatcher
+  dispatcher.on'speaking', () ->
+   speakingFlag = true
+  dispatcher.on'end', () ->
+   speakingFlag = false
 
+# if con
+#   speakingFlag = false
+#   console.log "speaking"
+#   con.on 'speaking', (user, speaking) ->
+#     if user.id == bot.user.id
+#       speakingFlag = true
+#       console.log "speaking"
+#
 getVoiceByUser = (id) ->
   if id in userVoice
     return userVoice[id]
