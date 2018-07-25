@@ -76,8 +76,10 @@ bot.on 'message', (message) ->
 if dispatcher
   dispatcher.on 'speaking', () ->
    speakingFlag = true
+   console.log "speaking"
   dispatcher.on 'end', () ->
    speakingFlag = false
+   console.log "speak finish"
 
 # if con
 #   speakingFlag = false
