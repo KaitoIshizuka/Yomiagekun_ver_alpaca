@@ -74,9 +74,9 @@ bot.on 'message', (message) ->
         dispatcher = message.member.voiceChannel.connection.playStream(stream)
 
 if dispatcher
-  dispatcher.on'speaking', () ->
+  dispatcher.on 'speaking', () ->
    speakingFlag = true
-  dispatcher.on'end', () ->
+  dispatcher.on 'end', () ->
    speakingFlag = false
 
 # if con
