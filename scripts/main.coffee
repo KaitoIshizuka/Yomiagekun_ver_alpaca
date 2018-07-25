@@ -73,11 +73,10 @@ bot.on 'message', (message) ->
         message.member.voiceChannel.connection.playStream(stream)
 
 if con
+  speakingFlag = false
   con.on 'speaking', (user, speaking) ->
     if user.id == bot.user.id
       speakingFlag = true
-else
-  speakingFlag = false
 
 getVoiceByUser = (id) ->
   if id in userVoice
