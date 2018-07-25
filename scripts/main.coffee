@@ -14,39 +14,48 @@ bot = new Discord.Client()
 BOT_TOKEN = process.env.BOT_TOKEN
 bot.login BOT_TOKEN
 
-VoiceText = require 'voice-text'
-writeFileSync = require 'fs'
+{ VoiceText } = require('voice-text')
+{ writeFileSync } = require 'fs'
 
 VOICE_TEXT_TOKEN = process.env.VOICE_TEXT_TOKEN
-voiceText = new VoiceText VOICE_TEXT_TOKEN
+voiceText = new VoiceText(VOICE_TEXT_TOKEN)
 
 textBuffer = []
 userVoice = {}
 VoiceTable = ['hikari', 'haruka', 'takeru', 'santa', 'bear', 'show']
+con = null
+speakingFlag = false
 
 bot.on "ready", () ->
   console.log("ready")
+
+
 
 bot.on 'message', (message) ->
   if message.author.id != bot.user.id
     if /^(?!##).*$/i.exec "#{message.content}"
       message.channel.send message.content
 
-    if /^(?!##).*$/i.exec "#{message.content}"
-      message.channel.send message.content
-
-
     if message.content == '##joinus'
       if message.member.voiceChannel
         message.member.voiceChannel.join()
-        .then () ->
+        .then (connection) ->
           message.reply 'voiceChannelに入ったよ'
+          con = message.member.voiceChannel.connection
         .catch console.log
       else
-        message.reply 'voiceChannel に参加しなよ、、'
+        message.reply '先にvoiceChannel に参加してー'
 
-    if message.member.voiceChannel
-      if connection.playing
+    if message.content == '##bye'
+      if con
+        con.disconnect()
+        message.channel.send 'バイバイ！また呼んでね！'
+        con = null
+      else
+        message.reply '通話に参加してないです、、'
+
+    if con
+      if speakingFlag
         voice = getVoiceByUser message.author.id
         textBuffer.push {
           voice: voice,
@@ -58,19 +67,27 @@ bot.on 'message', (message) ->
           voice: voice,
           msg: message.content
         }
-        connection.play(stream)
+        message.member.voiceChannel.connection.playStream(stream)
 
-getVoiceByUser (id) ->
+if con != null
+  con.on 'speaking', (user, speaking) ->
+    if user.id == bot.user.id && speaking
+      speakingFlag = true
+    else
+      speakingFlag = false
+
+getVoiceByUser = (id) ->
   if id in userVoice
     return userVoice[id]
   voice = VoiceTable[Math.floor Math.random() * VoiceTable.length]
   userVoice[id] = voice
   return voice
 
-getYomiageStream (obj) ->
+getYomiageStream = (obj) ->
     return voiceText.stream obj.msg, {
         speaker: obj.voice
     }
+
 # module.exports = (robot) ->
 #
 #   ## ##comeonで始まると通話に入る
