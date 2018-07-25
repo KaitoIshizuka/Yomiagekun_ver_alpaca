@@ -44,6 +44,13 @@ bot.on 'message', (message) ->
           .then (connection) ->
             message.reply 'voiceChannelに入ったよ'
             con = message.member.voiceChannel.connection
+            con.on 'speaking', (user,speaking) ->
+              if user.id == bot.user.id & speaking
+                if textBuffer.length
+                  con.playStream(getYomiageStream(textBuffer.shift()))
+                  speakingFlag = true
+              else
+                speakingFlag = false
           .catch console.log
         else
           message.reply '先にvoiceChannel に参加してー'
@@ -73,21 +80,13 @@ bot.on 'message', (message) ->
         }
         dispatcher = message.member.voiceChannel.connection.playStream(stream)
 
-if con
-  if con.speaking
-   speakingFlag = true
-   console.log "speaking"
-  else
-   speakingFlag = false
-   console.log "speak finish"
-   if textBuffer.length
-     voice = VoiceTable['takeru']
-     stream = getYomiageStream {
-       voice: voice,
-       msg: textBuffer.shift()
-     }
-     con.playStream(getYomiageStream(stream))
-
+      # dispatcher.on 'speaking', () ->
+      #   speakingFlag = true
+      #   console.log "speaking"
+      # dispatcher.on 'end', () ->
+      #   speakingFlag = false
+      #   console.log "speak finish"
+      # 
 # if con
 #   speakingFlag = false
 #   console.log "speaking"
