@@ -33,26 +33,27 @@ bot.on "ready", () ->
 
 bot.on 'message', (message) ->
   if message.author.id != bot.user.id
-    if /^(?!##).*$/i.exec "#{message.content}"
-      message.channel.send message.content
+    # if /^(?!##).*$/i.exec "#{message.content}"
+    #   message.channel.send message.content
 
-    if message.content == '##joinus'
-      if message.member.voiceChannel
-        message.member.voiceChannel.join()
-        .then (connection) ->
-          message.reply 'voiceChannelに入ったよ'
-          con = message.member.voiceChannel.connection
-        .catch console.log
-      else
-        message.reply '先にvoiceChannel に参加してー'
+    if /^(##).*$/i.exec "#{message.content}"
+      if message.content == '##joinus'
+        if message.member.voiceChannel
+          message.member.voiceChannel.join()
+          .then (connection) ->
+            message.reply 'voiceChannelに入ったよ'
+            con = message.member.voiceChannel.connection
+          .catch console.log
+        else
+          message.reply '先にvoiceChannel に参加してー'
 
-    if message.content == '##bye'
-      if con
-        con.disconnect()
-        message.channel.send 'バイバイ！また呼んでね！'
-        con = null
-      else
-        message.reply '通話に参加してないです、、'
+      if message.content == '##bye'
+        if con
+          con.disconnect()
+          message.channel.send 'バイバイ！また呼んでね！'
+          con = null
+        else
+          message.reply '通話に参加してないです、、'
 
     if con
       if speakingFlag
@@ -69,9 +70,9 @@ bot.on 'message', (message) ->
         }
         message.member.voiceChannel.connection.playStream(stream)
 
-if con != null
+if con
   con.on 'speaking', (user, speaking) ->
-    if user.id == bot.user.id && speaking
+    if user.id == bot.user.id
       speakingFlag = true
     else
       speakingFlag = false
