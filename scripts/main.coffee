@@ -73,11 +73,11 @@ bot.on 'message', (message) ->
         }
         dispatcher = message.member.voiceChannel.connection.playStream(stream)
 
-if dispatcher
-  dispatcher.on 'speaking', () ->
+if con
+  if con.speaking
    speakingFlag = true
    console.log "speaking"
-  dispatcher.on 'end', () ->
+  else
    speakingFlag = false
    console.log "speak finish"
 
