@@ -76,8 +76,8 @@ if con
   con.on 'speaking', (user, speaking) ->
     if user.id == bot.user.id
       speakingFlag = true
-    else
-      speakingFlag = false
+else
+  speakingFlag = false
 
 getVoiceByUser = (id) ->
   if id in userVoice
