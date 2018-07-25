@@ -77,6 +77,7 @@ if con
   con.on 'speaking', (user, speaking) ->
     if user.id == bot.user.id
       speakingFlag = true
+      console.log "speaking"
 
 getVoiceByUser = (id) ->
   if id in userVoice
