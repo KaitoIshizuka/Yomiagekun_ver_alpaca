@@ -57,13 +57,15 @@ bot.on 'message', (message) ->
 
     if con
       if speakingFlag
-        voice = getVoiceByUser message.author.id
+        # voice = getVoiceByUser message.author.id
+        voice = VoiceTable['takeru']
         textBuffer.push {
           voice: voice,
           msg: message.content
         }
       else
-        voice = getVoiceByUser message.author.id
+        # voice = getVoiceByUser message.author.id
+        voice = VoiceTable['haruka']
         stream = getYomiageStream {
           voice: voice,
           msg: message.content
