@@ -52,6 +52,7 @@ bot.on 'message', (message) ->
                   console.log "speaking"
                 else
                   speakingFlag = false
+                  streamBuffer.push getYomiageStream(textBuffer.shift())
                   if streamBuffer.length
                     dispatcher = con.playStream(streamBuffer.shift())
               else
@@ -77,7 +78,6 @@ bot.on 'message', (message) ->
           voice: voice,
           msg: message.content
         }
-        streamBuffer.push getYomiageStream(textBuffer.shift())
       else
         # voice = getVoiceByUser message.author.id
         voice = VoiceTable['haruka']
