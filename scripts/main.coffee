@@ -44,7 +44,7 @@ bot.on 'message', (message) ->
             message.reply 'voiceChannelに入ったよ'
             con = message.member.voiceChannel.connection
             con.on 'speaking', (user,speaking) ->
-              console.log "user.username, bot.user.username"
+              console.log "#{user.username}, #{bot.user.username}"
               if user.username is bot.user.username
                 speakingFlag = true
                 console.log "speaking"
