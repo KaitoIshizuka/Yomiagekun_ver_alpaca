@@ -49,8 +49,10 @@ bot.on 'message', (message) ->
                 if dispatcher.speaking
                   speakingFlag = true
                   console.log "speaking"
-                if textBuffer.length and not dispatcher.speaking
-                  dispatcher = con.playStream(getYomiageStream(textBuffer.shift()))
+                else
+                  speakingFlag = false
+                  if textBuffer.length
+                    dispatcher = con.playStream(getYomiageStream(textBuffer.shift()))
               else
                 speakingFlag = false
                 console.log "#{user.username}, speaking:#{speaking} #{textBuffer.length}"
