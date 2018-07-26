@@ -21,6 +21,7 @@ VOICE_TEXT_TOKEN = process.env.VOICE_TEXT_TOKEN
 voiceText = new VoiceText(VOICE_TEXT_TOKEN)
 
 textBuffer = []
+streamBuffer = []
 userVoice = {}
 VoiceTable = ['hikari', 'haruka', 'takeru', 'santa', 'bear', 'show']
 con = null
@@ -51,8 +52,8 @@ bot.on 'message', (message) ->
                   console.log "speaking"
                 else
                   speakingFlag = false
-                  if textBuffer.length
-                    dispatcher = con.playStream(getYomiageStream(textBuffer.shift()))
+                  if streamBuffer.length
+                    dispatcher = con.playStream(streamBuffer.shift())
               else
                 speakingFlag = false
                 console.log "#{user.username}, speaking:#{speaking} #{textBuffer.length}"
@@ -76,6 +77,7 @@ bot.on 'message', (message) ->
           voice: voice,
           msg: message.content
         }
+        streamBuffer.push getYomiageStream(textBuffer.shift())
       else
         # voice = getVoiceByUser message.author.id
         voice = VoiceTable['haruka']
@@ -108,10 +110,11 @@ getVoiceByUser = (id) ->
   return voice
 
 getYomiageStream = (obj) ->
-    return voiceText.stream obj.msg, {
+  stream = voiceText.stream obj.msg, {
         speaker: obj.voice
-    }
+  }
 
+  return stream
 # module.exports = (robot) ->
 #
 #   ## ##comeonで始まると通話に入る
