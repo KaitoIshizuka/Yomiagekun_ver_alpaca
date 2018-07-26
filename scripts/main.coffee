@@ -52,7 +52,7 @@ bot.on 'message', (message) ->
                   con.playStream(getYomiageStream(textBuffer.shift()))
               else
                 speakingFlag = false
-                console.log "n #{textBuffer.length}"
+                console.log "#{user.name}, speaking:#{speaking} #{textBuffer.length}"
           .catch console.log
         else
           message.reply '先にvoiceChannel に参加してー'
