@@ -34,17 +34,17 @@ bot.on "ready", () ->
 
 bot.on 'message', (message) ->
   if message.author.id != bot.user.id
-    # if /^(?!##).*$/i.exec "#{message.content}"
-    #   message.channel.send message.content
 
     if /^(##).*$/i.exec "#{message.content}"
       if message.content == '##joinus'
+
         if message.member.voiceChannel
           message.member.voiceChannel.join()
           .then (connection) ->
             message.reply 'voiceChannelに入ったよ'
             con = message.member.voiceChannel.connection
             con.on 'speaking', (user,speaking) ->
+              console.log "user.username, bot.user.username"
               if user.username is bot.user.username
                 speakingFlag = true
                 console.log "speaking"
