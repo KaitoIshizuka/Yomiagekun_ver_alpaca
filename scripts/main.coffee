@@ -45,11 +45,11 @@ bot.on 'message', (message) ->
             message.reply 'voiceChannelに入ったよ'
             con = message.member.voiceChannel.connection
             con.on 'speaking', (user,speaking) ->
-              if user.id == bot.user.id and speaking
+              if user.id == bot.user.id and !speaking
                 speakingFlag = true
+                console.log "speaking"
                 if textBuffer.length
                   con.playStream(getYomiageStream(textBuffer.shift()))
-                  console.log "speaking"
               else
                 speakingFlag = false
                 console.log "n #{textBuffer.length}"
