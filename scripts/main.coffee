@@ -47,7 +47,7 @@ bot.on 'message', (message) ->
             con.on 'speaking', (user,speaking) ->
               console.log textBuffer.length
               if dispatcher
-                if dispatcher.speaking
+                # if dispatcher.speaking
                   # speakingFlag = true
                   # console.log "speaking"
                 # else
