@@ -71,18 +71,17 @@ bot.on 'message', (message) ->
       else
         # voice = getVoiceByUser message.author.id
         speakingFlag = true
-        if textBuffer.length
-          dispatcher = con.playStream(getYomiageStream(textBuffer.shift()))
-          dispatcher.on "end", () ->
-            speakingFlag = false
-        else
-          voice = VoiceTable['haruka']
-          stream = getYomiageStream {
-            voice: voice,
-            msg: message.content
-          }
-          dispatcher = message.member.voiceChannel.connection.playStream(stream)
-          dispatcher.on "end", () ->
+        voice = VoiceTable['haruka']
+        stream = getYomiageStream {
+          voice: voice,
+          msg: message.content
+        }
+        dispatcher = message.member.voiceChannel.connection.playStream(stream)
+
+        dispatcher.on "end", () ->
+          if textBuffer.length
+            dispatcher = con.playStream(getYomiageStream(textBuffer.shift()))
+          else
             speakingFlag = false
 
       # dispatcher.on 'speaking', () ->
