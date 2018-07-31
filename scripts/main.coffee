@@ -46,21 +46,7 @@ bot.on 'message', (message) ->
             con = message.member.voiceChannel.connection
             con.on 'speaking', (user,speaking) ->
               console.log textBuffer.length
-              if dispatcher
-                # if dispatcher.speaking
-                  # speakingFlag = true
-                  # console.log "speaking"
-                # else
-                  # speakingFlag = false
-                # dispatcher.on "end", () ->
-                #   if textBuffer.length
-                #     dispatcher = con.playStream(getYomiageStream(textBuffer.shift()))
-                    # streamBuffer.push getYomiageStream(textBuffer.shift())
-                  # if streamBuffer.length
-                  #   dispatcher = con.playStream(streamBuffer.shift())
-              else
-                # speakingFlag = false
-                console.log "#{user.username}, speaking:#{speaking} #{textBuffer.length}"
+              console.log "#{user.username}, speaking:#{speaking} #{textBuffer.length}"
           .catch console.log
         else
           message.reply '先にvoiceChannel に参加してー'
@@ -93,7 +79,7 @@ bot.on 'message', (message) ->
         dispatcher = message.member.voiceChannel.connection.playStream(stream)
 
         dispatcher.on "speaking", () ->
-          speakingFlag = true
+          # speakingFlag = true
 
         dispatcher.on "end", () ->
           if textBuffer.length
