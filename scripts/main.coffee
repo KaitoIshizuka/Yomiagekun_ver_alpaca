@@ -49,12 +49,12 @@ bot.on 'message', (message) ->
               if dispatcher
                 if dispatcher.speaking
                   # speakingFlag = true
-                  console.log "speaking"
-                else
+                  # console.log "speaking"
+                # else
                   # speakingFlag = false
-                dispatcher.on "end", () ->
-                  if textBuffer.length
-                    dispatcher = con.playStream(getYomiageStream(textBuffer.shift()))
+                # dispatcher.on "end", () ->
+                #   if textBuffer.length
+                #     dispatcher = con.playStream(getYomiageStream(textBuffer.shift()))
                     # streamBuffer.push getYomiageStream(textBuffer.shift())
                   # if streamBuffer.length
                   #   dispatcher = con.playStream(streamBuffer.shift())
@@ -81,6 +81,7 @@ bot.on 'message', (message) ->
           voice: voice,
           msg: message.content
         }
+        console.log "speaking"
       else
         # voice = getVoiceByUser message.author.id
         speakingFlag = true
@@ -90,8 +91,16 @@ bot.on 'message', (message) ->
           msg: message.content
         }
         dispatcher = message.member.voiceChannel.connection.playStream(stream)
+
+        dispatcher.on "speaking", () ->
+          speakingFlag = true
+
         dispatcher.on "end", () ->
-          speakingFlag = false
+          if textBuffer.length
+            dispatcher = con.playStream(getYomiageStream(textBuffer.shift()))
+          else
+            speakingFlag = false
+          # dispatcher = message.member.voiceChannel.connection.playStream(stream)
 
       # dispatcher.on 'speaking', () ->
       #   speakingFlag = true
