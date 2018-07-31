@@ -73,6 +73,8 @@ bot.on 'message', (message) ->
         speakingFlag = true
         if textBuffer.length
           dispatcher = con.playStream(getYomiageStream(textBuffer.shift()))
+          dispatcher.on "end", () ->
+            speakingFlag = false
         else
           voice = VoiceTable['haruka']
           stream = getYomiageStream {
