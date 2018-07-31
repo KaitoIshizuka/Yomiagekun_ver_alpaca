@@ -80,14 +80,8 @@ bot.on 'message', (message) ->
             msg: message.content
           }
           dispatcher = message.member.voiceChannel.connection.playStream(stream)
-
-
-        dispatcher.on "speaking", () ->
-          # speakingFlag = true
-
-        dispatcher.on "end", () ->
-          speakingFlag = false
-          # dispatcher = message.member.voiceChannel.connection.playStream(stream)
+          dispatcher.on "end", () ->
+            speakingFlag = false
 
       # dispatcher.on 'speaking', () ->
       #   speakingFlag = true
