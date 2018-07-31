@@ -90,7 +90,7 @@ bot.on 'message', (message) ->
           msg: message.content
         }
         dispatcher = message.member.voiceChannel.connection.playStream(stream)
-        dispatcher on "end", () ->
+        dispatcher.on "end", () ->
           speakingFlag = false
 
       # dispatcher.on 'speaking', () ->
