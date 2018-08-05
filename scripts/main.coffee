@@ -45,8 +45,6 @@ bot.on 'message', (message) ->
             message.reply 'voiceChannelに入ったよ'
             con = message.member.voiceChannel.connection
             con.on 'speaking', (user,speaking) ->
-              console.log textBuffer.length
-              console.log "#{user.username}, speaking:#{speaking} #{textBuffer.length}"
           .catch console.log
         else
           message.reply '先にvoiceChannel に参加してー'
@@ -85,7 +83,7 @@ bot.on 'message', (message) ->
           speakingFlag = value
           if textBuffer.length and not value
             dispatcher = con.playStream(getYomiageStream(textBuffer.shift()))
-
+          console.log "speaking:#{value} #{textBuffer.length}"
       # dispatcher.on 'speaking', () ->
       #   speakingFlag = true
       #   console.log "speaking"
