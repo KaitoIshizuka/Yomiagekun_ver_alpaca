@@ -68,6 +68,7 @@ bot.on 'message', (message) ->
         console.log "speaking"
       else
         # voice = getVoiceByUser message.author.id
+        speakingFlag = true
         # if textBuffer.length
         #   dispatcher = con.playStream(getYomiageStream(textBuffer.shift()))
         # else
@@ -78,9 +79,9 @@ bot.on 'message', (message) ->
         }
         dispatcher = message.member.voiceChannel.connection.playStream(stream)
 
-        dispatcher.on "speaking", (value) ->
-          speakingFlag = value
-          if textBuffer.length and not value
+        dispatcher.on "end", () ->
+          speakingFlag = false
+          if textBuffer.length
             dispatcher = con.playStream(getYomiageStream(textBuffer.shift()))
           console.log "speaking:#{value} #{textBuffer.length}"
       # dispatcher.on 'speaking', () ->
