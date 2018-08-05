@@ -83,6 +83,8 @@ bot.on 'message', (message) ->
 
         dispatcher.on "speaking", (value) ->
           speakingFlag = value
+          if textBuffer.length and not value
+            dispatcher = con.playStream(getYomiageStream(textBuffer.shift()))
 
       # dispatcher.on 'speaking', () ->
       #   speakingFlag = true
