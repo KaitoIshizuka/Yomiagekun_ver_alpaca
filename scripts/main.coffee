@@ -57,33 +57,27 @@ bot.on 'message', (message) ->
         else
           message.reply '通話に参加してないです、、'
 
-    if con
-      if speakingFlag
-        # voice = getVoiceByUser message.author.id
-        voice = VoiceTable['haruka']
-        textBuffer.push {
-          voice: voice,
-          msg: message.content
-        }
+    # voice = getVoiceByUser message.author.id
+    voice = VoiceTable['haruka']
+    textBuffer.push {
+      voice: voice,
+      msg: message.content
+    }
+    # voice = getVoiceByUser message.author.id
+    voice = VoiceTable['haruka']
+    stream = getYomiageStream {
+      voice: voice,
+      msg: message.content
+    }
+    dispatcher = msg.member.voiceChannel.connection.playStream(stream)
+    dispatcher.on "end", () ->
+      speakingFlag = false
+      if textBuffer.length
+        message.member.voiceChannel.connection.playStream(getYomiageStream(textBuffer.shift()))
+        console.log "speaking by textBuffer"
+        console.log "speaking #{textBuffer.length}"
       else
-        # voice = getVoiceByUser message.author.id
-        if dispatcher
-          dispatcher.on "end", () ->
-            speakingFlag = false
-            if textBuffer.length
-              message.member.voiceChannel.connection.playStream(getYomiageStream(textBuffer.shift()))
-              console.log "speaking by textBuffer"
-              console.log "speaking #{textBuffer.length}"
-            else
-              console.log "no buf"
-        speakingFlag = true
-        voice = VoiceTable['haruka']
-        stream = getYomiageStream {
-          voice: voice,
-          msg: message.content
-        }
-        dispatcher = con.playStream(stream)
-
+        console.log "no buf"
 
       # dispatcher.on 'speaking', () ->
       #   speakingFlag = true
