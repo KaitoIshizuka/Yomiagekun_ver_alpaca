@@ -65,7 +65,7 @@ bot.on 'message', (message) ->
         msg: message.content
       }
       # voice = getVoiceByUser message.author.id
-      dispatcher = msg.member.voiceChannel.connection.playStream(getYomiageStream(textBuffer.shift()))
+      dispatcher = message.member.voiceChannel.connection.playStream(getYomiageStream(textBuffer.shift()))
       dispatcher.on "end", () ->
         speakingFlag = false
         if textBuffer.length
