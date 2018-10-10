@@ -104,9 +104,11 @@ getVoiceByUser = (id) ->
   return voice
 
 getYomiageStream = (obj) ->
-  stream = voiceText.stream obj.msg, {
-        speaker: obj.voice
-  }
+  # stream = voiceText.stream obj.msg, {
+  #       speaker: obj.voice
+  # }
+
+  stream = voiceText.stream(obj.msg,{format: 'ogg'})
 
   return stream
 # module.exports = (robot) ->
