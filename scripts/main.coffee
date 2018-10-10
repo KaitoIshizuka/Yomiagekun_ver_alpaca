@@ -67,20 +67,24 @@ bot.on 'message', (message) ->
         }
       else
         # voice = getVoiceByUser message.author.id
+        if dispatcher
+          dispatcher.on "end", () ->
+            speakingFlag = false
+            if textBuffer.length
+              message.member.voiceChannel.connection.playStream(getYomiageStream(textBuffer.shift()))
+              console.log "speaking by textBuffer"
+              console.log "speaking #{textBuffer.length}"
+            else
+              console.log "no buf"
         speakingFlag = true
         voice = VoiceTable['haruka']
         stream = getYomiageStream {
           voice: voice,
           msg: message.content
         }
-        dispatcher = message.member.voiceChannel.connection.playStream(stream)
+        dispatcher = con.playStream(stream)
 
-        dispatcher.on "end", () ->
-          speakingFlag = false
-          if textBuffer.length
-            message.member.voiceChannel.connection.playStream(getYomiageStream(textBuffer.shift()))
-            console.log "speaking by textBuffer"
-          console.log "speaking #{textBuffer.length}"
+
       # dispatcher.on 'speaking', () ->
       #   speakingFlag = true
       #   console.log "speaking"
@@ -104,11 +108,9 @@ getVoiceByUser = (id) ->
   return voice
 
 getYomiageStream = (obj) ->
-  # stream = voiceText.stream obj.msg, {
-  #       speaker: obj.voice
-  # }
-
-  stream = voiceText.stream(obj.msg,{format: 'ogg'})
+  stream = voiceText.stream obj.msg, {
+        speaker: obj.voice
+  }
 
   return stream
 # module.exports = (robot) ->
